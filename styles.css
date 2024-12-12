@@ -1,0 +1,1682 @@
+/* Add these at the beginning of your styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Update color scheme with brighter colors */
+:root {
+    --white: #FFFFFF;
+    --powder-blue: #F0F8FF;  /* Lighter powder blue */
+    --steel-blue: #B8D1F3;   /* Brighter steel blue */
+    --slate-blue: #89B4FF;   /* Brighter slate blue */
+    
+    /* Update derived colors */
+    --highlight-color: var(--slate-blue);
+    --primary-color: var(--slate-blue);
+    --secondary-color: var(--steel-blue);
+    --accent-color: var(--powder-blue);
+    --text-color: #4B6A9E;    /* Brighter text color */
+    --bg-color: var(--white);
+    --card-bg: rgba(255, 255, 255, 0.98);  /* More opaque for contrast */
+    --hover-color: var(--steel-blue);
+    --shadow-color: rgba(137, 180, 255, 0.15);  /* Brighter shadow */
+    --border-color: var(--powder-blue);
+    
+    /* Update gradient with brighter colors */
+    --gradient: linear-gradient(180deg, 
+        var(--white) 0%,
+        var(--powder-blue) 30%,
+        var(--steel-blue) 70%,
+        var(--slate-blue) 100%
+    );
+    
+    /* Add new heading colors */
+    --heading-primary: #1E3A8A;    /* Deep blue */
+    --heading-secondary: #2563EB;   /* Royal blue */
+    --heading-tertiary: #3B82F6;    /* Bright blue */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    padding-left: 240px;
+    margin: 0;
+}
+
+/* Navigation Styles */
+.side-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 240px;
+    padding: 0;
+    margin: 0;
+    background: var(--gradient);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 4px 0 20px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+.nav-brand {
+    padding: 1.5rem 1rem;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    display: none;  /* Hide the logo */
+}
+
+.nav-title {
+    color: var(--text-color);
+    font-size: 1.4rem;  /* Increased size since no logo */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.3;
+    width: 100%;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 0.8rem;  /* Increased padding */
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin: 0 auto;  /* Center the title */
+}
+
+.nav-title:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.nav-links {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-links li a {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links li a i {
+    width: 20px;
+    text-align: center;
+}
+
+.nav-links li a:hover {
+    color: var(--slate-blue);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.nav-links li a:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--highlight-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover:before {
+    width: 100%;
+}
+
+.nav-footer {
+    margin-top: auto;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--slate-blue);
+    transform: translateY(-3px);
+}
+
+/* Update section padding to account for side nav */
+section {
+    padding: 2rem;
+    margin: 0;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+    overflow-x: hidden;
+    border: none;
+}
+
+/* Add responsive behavior */
+@media (max-width: 768px) {
+    .side-nav {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    section {
+        margin-left: 0;
+        width: 100%;
+        padding-bottom: 5rem;
+    }
+
+    .nav-title, 
+    .nav-links li a span {
+        display: none;
+    }
+
+    section {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        padding: 3rem 1rem;
+    }
+
+    .nav-links li a {
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .nav-links li a i {
+        margin: 0;
+    }
+
+    .nav-brand {
+        justify-content: center;
+    }
+}
+
+/* Optional: Add hover expand effect for mobile */
+@media (max-width: 768px) {
+    .side-nav:hover {
+        width: 240px;
+    }
+
+    .side-nav:hover .nav-title,
+    .side-nav:hover .nav-links li a span {
+        display: block;
+    }
+
+    .side-nav:hover .nav-links li a {
+        justify-content: flex-start;
+    }
+}
+
+/* Basic Section Styles */
+section {
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    width: 100%;
+}
+
+/* Container Styles */
+.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    overflow-x: hidden;
+}
+
+/* Grid Layouts */
+.skills-grid,
+.projects-grid,
+.profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+/* Basic Typography */
+h1, h2, h3, h4 {
+    color: #2B4C7E;  /* Darker blue for better contrast */
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Make sure all links are visible */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+/* Enhanced Navigation */
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    padding: 0.5rem 2rem;
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.nav-links li a {
+    position: relative;
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-color);
+}
+
+/* Enhanced Home Section */
+#home {
+    position: relative;
+    background: var(--bg-color);
+    overflow: visible;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 4rem);
+    padding: 4rem 2rem;
+    position: relative;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+.hero::before {
+    display: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--highlight-color);
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+}
+
+.profile-img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 40px rgba(233, 69, 96, 0.5);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.hero .social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.hero .social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.hero .social-links a:hover {
+    color: var(--highlight-color);
+    background: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero {
+        margin: 1rem;
+        padding: 3rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Section Animations */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+section.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced Cards */
+.profile-card, .project-card, .skill-category {
+    position: relative;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.profile-card::before, .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.profile-card:hover::before, .project-card:hover::before {
+    left: 100%;
+}
+
+.profile-card:hover, .project-card:hover, .skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-color);
+    border-color: var(--slate-blue);
+}
+
+/* Skill Category Enhancements */
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.skill-category ul li {
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    color: var(--secondary-color);
+    margin-left: 0;  /* Remove left margin */
+}
+
+/* Remove the arrow/dot before hover */
+.skill-category ul li::before {
+    content: none;  /* Remove the arrow */
+}
+
+/* Update hover effect without dots */
+.skill-category ul li:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+    padding-left: 5px;  /* Add slight padding on hover instead of dot */
+}
+
+/* Remove any other potential dot styles */
+.skill-category ul li::marker {
+    display: none;
+}
+
+.skill-category ul li::-webkit-details-marker {
+    display: none;
+}
+
+/* Enhanced Contact Form */
+.contact-form input, .contact-form textarea {
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--accent-color);
+    background: var(--bg-color);
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,123,255,0.1);
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    background: var(--slate-blue);
+    z-index: 1;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: var(--steel-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backgroundMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s ease;
+}
+
+/* Section headers alignment */
+section h2 {
+    font-size: 2.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--highlight-color);
+    border-radius: 2px;
+}
+
+/* Update profile cards */
+.profile-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border-color: var(--highlight-color);
+}
+
+.profile-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* Add specific style for GFG icon */
+.profile-card .fa-code-branch {
+    color: #2f8d46; /* GFG's green color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .skills-grid,
+    .projects-grid,
+    .profiles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        padding: 3rem 1rem;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .profiles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Fix contact form width */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Update footer alignment */
+footer {
+    background: var(--slate-blue);
+    color: var(--white);
+    padding: 10px !important;  /* Reduced padding */
+    text-align: center;
+    font-size: 0.9rem;  /* Smaller font size */
+    position: relative;
+    margin-left: 0px;
+    width: 100% !important; /* Adjust width to account for sidebar */
+    bottom: 0;
+}
+
+/* Responsive footer adjustments */
+@media (max-width: 768px) {
+    footer {
+        margin-left: 0;
+        width: 100%;
+        padding: 0.8rem;  /* Even smaller padding on mobile */
+        font-size: 0.85rem;  /* Slightly smaller font on mobile */
+    }
+}
+
+/* Update footer text styles */
+footer p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Add subtle hover effect */
+footer:hover {
+    background: var(--steel-blue);
+    transition: background 0.3s ease;
+}
+
+/* Remove any conflicting footer styles */
+.container footer {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* Remove any conflicting footer styles */
+.container footer {
+    margin-left: 0;
+    width: 100%;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    footer {
+        margin-left: 0;
+        width: 100%;
+        padding-bottom: 5rem;
+    }
+}
+
+/* Add these styles for new sections */
+.education-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.education-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.education-item .year {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+    margin: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border-color: var(--highlight-color);
+}
+
+.project-role {
+    color: var(--accent-color);
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.project-tech {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.project-details {
+    list-style: none;
+}
+
+.project-details li {
+    padding-left: 0;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.project-details li::before {
+    content: none;
+}
+
+.internship-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+.internship-details {
+    color: var(--accent-color);
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+/* Add styles for platform logos */
+.platform-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover .platform-logo {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px var(--shadow-color));
+}
+
+/* Java logo specific styles */
+.java-logo {
+    width: 60px;
+    height: 100px;
+    filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+
+.java-logo img {
+    /* Java logo colors */
+    filter: invert(23%) sepia(91%) saturate(1200%) hue-rotate(184deg) brightness(97%) contrast(101%);  /* Java blue */
+}
+
+.java-logo:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 74, 150, 0.4));  /* Java blue shadow */
+}
+
+/* AICTE logo specific styles */
+.aicte-logo {
+    width: 120px;
+    height: 60px;
+    filter: brightness(1) contrast(1.1);
+}
+
+.aicte-logo img {
+    /* AICTE official colors */
+    filter: invert(12%) sepia(85%) saturate(2378%) hue-rotate(201deg) brightness(94%) contrast(98%);  /* AICTE blue */
+}
+
+.aicte-logo:hover {
+    filter: drop-shadow(0 4px 8px rgba(25, 118, 210, 0.4));  /* AICTE blue shadow */
+}
+
+/* Container adjustments for logos */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Update profile card styles */
+.profile-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-card h3 {
+    margin: 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.profile-card p {
+    color: var(--secondary-color);
+    margin: 0.25rem 0;
+}
+
+.profile-card .btn {
+    margin-top: 1rem;
+}
+
+/* Update grid layout for 4 cards */
+.profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Adjust platform logo sizes */
+.platform-logo {
+    width: 100px;
+    height: 35px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+/* Add specific style for CodeChef logo */
+.profile-card:nth-child(4) .platform-logo {
+    width: 140px; /* Slightly larger for CodeChef logo */
+    filter: brightness(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .profiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .profiles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Update profile cards for a more compact design */
+.profiles-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.profile-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 200px; /* Fixed width for uniformity */
+}
+
+.platform-logo {
+    width: 100px;
+    height: 35px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.profile-card .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Hover effects */
+.profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.profile-card:hover .platform-logo {
+    transform: scale(1.05);
+    filter: brightness(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .profiles-grid {
+        gap: 1rem;
+    }
+    
+    .profile-card {
+        width: 180px;
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profiles-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .profile-card {
+        width: calc(50% - 1rem);
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* Add new styles for certificates section */
+.certificates-section {
+    margin-top: 2rem;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Changed to 3 columns */
+    gap: 2rem;  /* Increased gap between cards */
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.certificate-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    min-width: 280px;  /* Set minimum width */
+    max-width: 350px;  /* Set maximum width */
+    margin: 0 auto;  /* Center cards in their grid cells */
+    width: 100%;
+}
+
+/* Certificate icons styling */
+.cert-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Java certificate icon */
+.certificate-card:nth-child(3) .cert-icon {
+    background: linear-gradient(45deg, #5382a1, #f89820);  /* Java's blue to orange gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* AWS certificate icon */
+.certificate-card:nth-child(2) .cert-icon {
+    color: #FF9900;  /* AWS orange */
+    filter: drop-shadow(0 2px 4px rgba(255, 153, 0, 0.2));
+}
+
+/* Red Hat certificate icon */
+.certificate-card:nth-child(1) .cert-icon {
+    color: #EE0000;  /* Red Hat red */
+    filter: drop-shadow(0 2px 4px rgba(238, 0, 0, 0.2));
+}
+
+/* Hover effects */
+.certificate-card:hover .cert-icon {
+    transform: scale(1.1);
+}
+
+.certificate-card h4 {
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    height: 2.6em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cert-date {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.cert-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .certificate-card h4 {
+        height: auto;
+    }
+}
+
+/* Update Red Hat icon style to target first card */
+.certificate-card:first-child .cert-icon {
+    color: #EE0000; /* Red Hat's official red color */
+}
+
+/* Update AWS icon style to target second card */
+.certificate-card:nth-child(2) .cert-icon {
+    color: #FF9900; /* AWS's official orange color */
+}
+
+/* Keep other styles unchanged */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+/* Update education styles for more compact look */
+.education {
+    margin: 1.5rem 0;
+}
+
+.education h3 {
+    margin-bottom: 1rem;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.education-item {
+    background: var(--card-bg);
+    padding: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.education-item h4 {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.education-item p {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.year {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+/* Remove gap between sections */
+#coding-profiles {
+    padding: 2rem 2rem 0;
+    margin-bottom: -4rem;
+}
+
+#skills {
+    padding: 0 2rem 2rem;
+    margin-top: -2rem;
+}
+
+/* Make section headers more compact */
+#coding-profiles h2,
+#skills h2 {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+}
+
+/* Adjust grid containers to remove extra space */
+.profiles-grid {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.skills-grid {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #coding-profiles {
+        padding: 1.5rem 1rem 0;
+        margin-bottom: -3rem;
+    }
+    
+    #skills {
+        padding: 0 1rem 1.5rem;
+        margin-top: -1.5rem;
+    }
+}
+
+/* Update project grid and card styles for better alignment */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: transform 0.3s ease;
+    height: 100%;  /* Ensure all cards have same height */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
+.project-details {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: auto;  /* Push details to bottom of card */
+}
+
+.project-details li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.project-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Update buttons and interactive elements */
+.btn {
+    background: var(--slate-blue);
+    color: var(--white);
+}
+
+.btn:hover {
+    background: var(--steel-blue);
+}
+
+/* Update footer */
+footer {
+    background: var(--slate-blue);
+    color: var(--white);
+}
+
+/* Update scrollbar */
+::-webkit-scrollbar-track {
+    background: var(--powder-blue);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--steel-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--slate-blue);
+}
+
+/* Remove dots from project details everywhere */
+.project-details {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: auto;
+}
+
+.project-details li {
+    margin-bottom: 0.5rem;
+    padding-left: 0;  /* Remove left padding */
+    position: relative;
+}
+
+/* Remove the dots */
+.project-details li::before {
+    content: none;  /* Remove the bullet point */
+}
+
+/* Update project card styles */
+.project-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure consistent spacing */
+.project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
+.project-role, .project-tech {
+    margin-bottom: 0.5rem;
+}
+
+/* Remove all dots from any list throughout the site */
+ul, ol, li {
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove dots from nav links */
+.nav-links li {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Remove dots from skill lists */
+.skill-category ul,
+.skill-list,
+.education-list,
+.project-list,
+.coding-profiles-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Remove any pseudo-elements that might create dots */
+li::before,
+li::after,
+li::marker,
+li::-webkit-details-marker {
+    display: none;
+    content: none;
+}
+
+/* Ensure no bullets in project details */
+.project-details {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+.project-details li {
+    list-style: none !important;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* Remove dots from social links */
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Global heading styles */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-primary);
+    font-weight: 600;
+}
+
+/* Hero section headings */
+.hero h1 {
+    background: linear-gradient(
+        45deg,
+        var(--heading-primary) 0%,
+        var(--heading-secondary) 50%,
+        var(--heading-tertiary) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.8rem;
+}
+
+.hero h2 {
+    color: var(--heading-secondary);
+    font-size: 1.5rem;
+}
+
+/* Section titles */
+.section-title, section h2 {
+    color: #1a365d;  /* Deep navy blue */
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    font-weight: 700;
+    background: linear-gradient(
+        45deg,
+        #1a365d 0%,    /* Deep navy */
+        #2b4c80 50%,   /* Royal blue */
+        #3b82f6 100%   /* Bright blue */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Add decorative underline */
+.section-title:after, section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(
+        to right,
+        #1a365d,    /* Deep navy */
+        #3b82f6     /* Bright blue */
+    );
+    border-radius: 2px;
+}
+
+/* Update about section specific styles */
+#about .section-title {
+    margin-bottom: 3rem;  /* Extra space for about section */
+}
+
+.about-content {
+    color: #2d3748;  /* Darker text for better readability */
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #2d3748;  /* Slate gray */
+}
+
+/* Update education section heading */
+.education h3 {
+    color: #2b4c80;  /* Royal blue */
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Project card headings */
+.project-card h3 {
+    color: var(--heading-secondary);
+    font-size: 1.25rem;
+}
+
+/* Education section headings */
+.education h3 {
+    color: var(--heading-primary);
+    font-size: 1.8rem;
+}
+
+.education-item h4 {
+    color: var(--heading-secondary);
+    font-size: 1.2rem;
+}
+
+/* Profile card headings */
+.profile-card h3 {
+    color: var(--heading-secondary);
+    font-weight: 600;
+}
+
+/* Skill category headings */
+.skill-category h3 {
+    color: var(--heading-secondary);
+    font-size: 1.3rem;
+}
+
+/* Certificate card and button styles */
+.certificate-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.cert-link {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(45deg, var(--slate-blue), var(--steel-blue));
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(137, 180, 255, 0.2);
+}
+
+.cert-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(137, 180, 255, 0.3);
+    background: transparent;
+    color: var(--slate-blue);
+    border-color: var(--slate-blue);
+    text-decoration: none;
+}
+
+/* Add icon to button */
+.cert-link::after {
+    content: '\f08e';  /* External link icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Adjust spacing */
+.certificate-card h4 {
+    margin-bottom: 1rem;
+}
+
+.cert-date {
+    margin-bottom: 1.5rem;
+}
+ 
