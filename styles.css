@@ -267,10 +267,8 @@ section {
 .projects-grid,
 .profiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    padding: 1rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
 /* Basic Typography */
@@ -1679,4 +1677,6 @@ h1, h2, h3, h4, h5, h6 {
 .cert-date {
     margin-bottom: 1.5rem;
 }
+
+
  
